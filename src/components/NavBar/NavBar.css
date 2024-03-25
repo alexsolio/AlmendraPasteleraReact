@@ -1,0 +1,19 @@
+h3 {
+    color: #b17a4e;
+    font-size: 40px;
+    display: inline-block;
+}
+
+.Option,
+.ActiveOption {
+  color:  rgba(72, 158, 154, 0.6784313725); 
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+  width: 150px;
+}
+
