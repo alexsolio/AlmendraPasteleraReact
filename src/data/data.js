@@ -1,4 +1,4 @@
-const products = [
+export const products = [
     {
         id: '1',
         name: "Crumble de manzana",
@@ -26,7 +26,7 @@ const products = [
         category: 'tortasclasicas',
         img: 'https://media.ambito.com/p/2ead1722003f5d92e8b2d4af54109021/adjuntos/239/imagenes/040/922/0040922370/torta-marquisejpg.jpg',
         stock: 5,
-        description: 'Base de marquise de chocolate, cubierta con dulce de leche, crema y frutos rojos'
+        description: 'Base de marquise de chocolate, cubierta con dulce de leche, crema y frutos rojos.'
     },
 
     {
@@ -91,28 +91,3 @@ const products = [
 
 
 ]
-
-
-export const getProducts = () => {
-    return new Promise ((resolve) => {
-        setTimeout(() => { 
-            resolve(products)
-         }, 500)
-    })
-}
-
-export const getProductByID = (productId) => {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(products.find(prod => prod.id === productId))
-        }, 500)
-    })
-}
-
-export const getProductByCategory = (category) => {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(products.filter(prod => prod.category === category))
-        }, 500)
-    })
-}

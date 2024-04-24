@@ -1,0 +1,14 @@
+.Counter {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Alinea horizontalmente */
+}
+
+.Controls {
+    display: flex;
+    align-items: center;
+}
+
+.Button {
+    margin: 0 5px;
+}

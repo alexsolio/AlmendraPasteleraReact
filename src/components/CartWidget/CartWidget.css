@@ -1,0 +1,35 @@
+.CartWidgetContainer {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .CartImg {
+    margin-right: 20px;
+  }
+  
+  .ItemCount {
+    color: #000000;
+    padding: 5px 8px;
+    font-size: 12px;
+    position: absolute;
+    top: 7px;
+    right: 75px;
+    border: 2px solid #000000;
+    border-radius: 50%;
+  }
+
+  .CartHoverMenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.HoverButton {
+    margin-bottom: 5px;
+}

@@ -12,6 +12,7 @@ const NavBar = () => {
                 <CartWidget className="CartWidget" />
             </div>
             <div className='ButtonsContainer'>
+                <NavLink to={`/`} className='Option'>Todos los productos</NavLink>
                 <NavLink to={`/category/tortasclasicas`} className='Option'>Tortas Clásicas</NavLink>
                 <NavLink to={`/category/cheesecakes`} className='Option'>Cheesecakes</NavLink>
                 <NavLink to={`/category/panaderia`} className='Option'>Panadería</NavLink>
