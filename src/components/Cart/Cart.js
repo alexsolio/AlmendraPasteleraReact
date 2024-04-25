@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import CartItem from '../CartItem/CartItem';
@@ -6,6 +6,8 @@ import './Cart.css';
 
 const Cart = () => {
     const { cart, clearCart, totalQuantity, totalPrice } = useContext(CartContext);
+
+    const hasInsufficientStock = cart.some(item => item.quantity > item.stock);
 
     const renderCartItems = () => {
         return cart.map(item => (
@@ -19,10 +21,6 @@ const Cart = () => {
             />
         ));
     };
-
-    useEffect(() => {
-        console.log("Carrito al cargar la página:", cart);
-    }, [cart]);
 
     return (
         <div>
@@ -40,8 +38,14 @@ const Cart = () => {
                         <h3 className="total">Total a pagar:</h3>
                         <h3 className="precio">${totalPrice}</h3>
                     </div>
-                    <button onClick={clearCart} className="Button clear-cart-button">Vaciar carrito</button>
-                    <Link to='/checkout' className='Option terminar-compra-button'>Terminar compra</Link>
+                    {hasInsufficientStock ? (
+                        <p className="error-message">No hay suficiente stock para completar la compra. Comunicate con nosotros para hacer una compra mayor.</p>
+                    ) : (
+                        <React.Fragment>
+                            <button onClick={clearCart} className="Button clear-cart-button">Vaciar carrito</button>
+                            <Link to='/checkout' className='Option terminar-compra-button'>Terminar compra</Link>
+                        </React.Fragment>
+                    )}
                 </div>
             )}
         </div>

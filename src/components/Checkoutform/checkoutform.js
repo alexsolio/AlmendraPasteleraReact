@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom'; // Importa Link desde react-router-dom
+import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext';
 import { createBuyOrder } from '../../services/firebase';
 import './CheckoutForm.css';
 
 const CheckoutForm = () => {
-    const { cart } = useContext(CartContext);
+    const { cart, clearCart } = useContext(CartContext);
 
     const [idOrder, setIdOrder] = useState(null);
 
@@ -37,6 +37,7 @@ const CheckoutForm = () => {
         createBuyOrder(order)
             .then(data => {
                 setIdOrder(data);
+                clearCart(); // Vacía el carrito después de la compra
             });
     }
 
