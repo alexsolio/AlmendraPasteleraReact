@@ -1,5 +1,12 @@
 .ItemImg {
     height: 150px; 
-    max-width: auto;
-    overflow: hidden;
+    width: 357px;
+    object-fit: cover;
   }
+
+  .CardItem {
+    flex: 0 1 calc(33.33% - 20px); /* Establecer el ancho de cada elemento */
+    margin: 10px; /* Márgenes entre los elementos */
+    overflow: hidden; /* Ocultar el contenido que se desborda */
+    /* Otros estilos según sea necesario */
+}

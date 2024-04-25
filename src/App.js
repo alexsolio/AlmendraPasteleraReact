@@ -18,7 +18,7 @@ function App() {
                         <Route path='/category/:categoryId' element={<ItemListContainer greeting="Bienvenido" />} />
                         <Route path='/item/:itemId' element={<ItemDetailContainer />} />
                         <Route path='/cart' element={<Cart />} />
-                        <Route path='/checkout' element={<Checkout />} /> {}
+                        <Route path='/checkout' element={<Checkout />} /> {/* Corregida la importación del componente Checkout */}
                         <Route path='*' element={<h1>404 NOT FOUND</h1>} />
                     </Routes>
                 </CartProvider>

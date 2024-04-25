@@ -32,7 +32,6 @@ const CartWidget = () => {
                         <button className="HoverButton">Ver carrito</button>
                     </Link>
                     <button className="HoverButton" onClick={handleClearCart}>Vaciar carrito</button>
-                    <button className="HoverButton">Terminar compra</button>
                 </div>
             )}
         </div>

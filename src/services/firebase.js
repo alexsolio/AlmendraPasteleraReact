@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, doc, getDoc, query, where, addDoc } from "firebase/firestore";
+import { getFirestore, collection, getDocs, doc, getDoc, addDoc, updateDoc, query, where } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB-ih-gRpy_2qn41hojkeEogbANtr3nwqo",
@@ -40,6 +40,45 @@ export const getOneProduct = async (idToSearch) => {
 
 export const createBuyOrder = async (order) => {
     const ordersCollectionRef = collection(db, "orders");
-    const orderDoc = await addDoc(ordersCollectionRef , order);
+    const orderDoc = await addDoc(ordersCollectionRef, order);
+
+    // Reducir el stock de los productos comprados
+    const productsToUpdate = order.items.map(item => {
+        return { id: item.id, quantity: item.quantity };
+    });
+
+    await Promise.all(productsToUpdate.map(async (product) => {
+        const productRef = doc(db, "products", product.id);
+        const productDoc = await getDoc(productRef);
+        if (!productDoc.exists()) {
+            throw new Error("No se encontró el producto");
+        }
+
+        const productData = productDoc.data();
+        const newStock = productData.stock - product.quantity;
+
+        if (newStock < 0) {
+            throw new Error(`Stock insuficiente para el producto ${productData.name}`);
+        }
+
+        await updateDoc(productRef, { stock: newStock });
+    }));
+
     return orderDoc.id;
-}
+};
+
+
+/* export const exportMyData = async (data) => {
+    const productsCollectionRef = collection(db, "products");
+
+    try {
+        await Promise.all(data.map(async (prod) => {
+            const docRef = await addDoc(productsCollectionRef, prod);
+            console.log("Documento creado:", docRef.id);
+        }));
+    } catch (error) {
+        console.error("Error al exportar datos:", error);
+    }
+};
+
+*/ 

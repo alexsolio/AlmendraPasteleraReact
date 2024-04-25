@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom'; // Importa Link desde react-router-dom
 import { CartContext } from '../../context/CartContext';
 import { createBuyOrder } from '../../services/firebase';
+import './CheckoutForm.css';
 
 const CheckoutForm = () => {
     const { cart } = useContext(CartContext);
@@ -21,9 +23,9 @@ const CheckoutForm = () => {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault(); // Corregir aquí
+        e.preventDefault();
 
-        if (userData.name === "" && userData.email === "") return;
+        if (userData.name === "" || userData.email === "") return;
 
         const order = {
             name: userData.name,
@@ -38,11 +40,20 @@ const CheckoutForm = () => {
             });
     }
 
-    if (idOrder) return <div>{idOrder}</div>;
+    if (idOrder) {
+        return (
+            <div className="order-success">
+                <p className="order-number">Tu número de orden es: {idOrder}</p>
+                <p className="thank-you">Gracias por comprar en Almendra Pastelera!</p>
+                <Link to="/" className="navbar-button">Volver al inicio</Link>
+            </div>
+        );
+    }
 
     return (
-        <>
-            <form onSubmit={handleSubmit}>
+        <div className="checkout-form-container">
+            <h2 className="checkout-title">Completa tu compra</h2>
+            <form className="checkout-form" onSubmit={handleSubmit}>
                 <input
                     className="input"
                     type="text"
@@ -62,12 +73,11 @@ const CheckoutForm = () => {
                     value={userData.email}
                     onChange={handleChange}
                 />
-                <button type="submit">
+                <button type="submit" className="checkout-button">
                     Enviar
                 </button>
             </form>
-            <div>checkoutform</div>
-        </>
+        </div>
     );
 };
 

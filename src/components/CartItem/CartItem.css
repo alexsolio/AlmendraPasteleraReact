@@ -23,10 +23,41 @@
   .cart-item-name,
   .cart-item-price,
   .cart-item-quantity {
+    width: 300px;
     margin: 0; 
     flex-grow: 1; 
+    text-align: left; 
+  }
+
+  .cart-item-quantity{
+    display: flex;
+    align-items: center;
+
+  }
+
+  .cart-item-quantity-button {
+    height: 50%;
+    vertical-align:bottom;
+    margin-left: auto;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 3px;
+    color: rgba(72, 158, 154, 0.6784313725); 
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: transparent;
   }
   
+  .cart-item-price{
+    width: 400px;
+  }
+  .cart-item-total {
+    width: 100px;
+    margin: 0; 
+    flex-grow: 1; 
+    text-align: left; 
+  }
   .cart-item-remove-button {
     margin-left: auto;
     margin-right: 150px;

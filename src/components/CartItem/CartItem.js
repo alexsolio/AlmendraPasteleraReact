@@ -3,10 +3,14 @@ import { CartContext } from '../../context/CartContext';
 import './CartItem.css';
 
 const CartItem = ({ id, name, price, quantity, img }) => {
-  const { removeItem } = useContext(CartContext);
+  const { removeItem, updateItemQuantity } = useContext(CartContext);
 
   const handleRemoveItem = () => {
     removeItem(id);
+  };
+
+  const handleUpdateQuantity = (newQuantity) => {
+    updateItemQuantity(id, newQuantity);
   };
 
   const totalProductPrice = price * quantity;
@@ -17,8 +21,12 @@ const CartItem = ({ id, name, price, quantity, img }) => {
       <div className="cart-item-details">
         <h2 className="cart-item-name">{name}</h2>
         <h2 className="cart-item-price">Precio: ${price}</h2>
-        <h2 className="cart-item-quantity">Cantidad: {quantity}</h2>
-        <h2 className="cart-item-total">Total: ${totalProductPrice}</h2> {/* Precio total */}
+        <div className="cart-item-quantity">
+          <button className="cart-item-quantity-button" onClick={() => handleUpdateQuantity(quantity - 1)}>-</button>
+          <h2>{quantity}</h2>
+          <button className="cart-item-quantity-button" onClick={() => handleUpdateQuantity(quantity + 1)}>+</button>
+        </div>
+        <h2 className="cart-item-total">${totalProductPrice}</h2> {/* Precio total */}
       </div>
       <button className="cart-item-remove-button" onClick={handleRemoveItem}>X</button>
     </div>
